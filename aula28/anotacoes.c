@@ -16,3 +16,7 @@ int main() {
 
     return 0;  // Finaliza o programa com sucesso
 }
+
+// char str[50]; // esse é o trem de ferro, ele vai de 0 a 49, não use mais que isso.
+
+// se vc digitar dentro dessa str só "puc" vai ficar mais ou menos assim: str = {"puc",/0};
