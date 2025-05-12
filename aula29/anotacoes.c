@@ -35,3 +35,13 @@ void qtVogais ( char* str, int qtVogais[])
         i++
     }
 }
+
+// nome e idade de um aluno em struct
+
+
+define MAX_STR 50
+
+typedef struct{
+    char nome[MAX_STR];
+    int idade;
+}Pessoa;
