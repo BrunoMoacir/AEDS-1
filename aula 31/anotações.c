@@ -9,7 +9,10 @@
 #define MAX_STR 50
 #define MAX 100
 int TAM = 0;
-
+typedef struc{
+    char nome[50];
+    Data nascimento;
+}Pessoa;
 
 typedef struct{
     int dias;
