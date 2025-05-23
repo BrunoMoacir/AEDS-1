@@ -21,3 +21,12 @@ bool verificaPessoa(Pessoa pessoa1, Pessoa pessoa2){
     }
     return sucesso;
 }
+// outra resolucao
+bool verificaPessoas(Pessoa a,Pessoa b){
+    if(a.idade != b.idade)return false;
+
+    for(int i = 0; a.nome[i] || b.nome[i]; i++){
+        if(a.nome[i] != b.nome[i])return false;
+    }
+    return true;
+}
