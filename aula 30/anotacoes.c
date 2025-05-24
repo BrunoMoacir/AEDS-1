@@ -4,7 +4,7 @@
 
 void escreveInvertida(char* str){
     int n = strlen(str);
-    for(int i = 0; i >= 0; i--){
+    for(int i = n; i >= 0; i--){
         printf("%c", str[i]);
     }
 }

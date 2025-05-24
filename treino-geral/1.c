@@ -10,7 +10,7 @@ void somaMatriz(float M1[3][2], float M2[3][2], float M3[3][2]){
 // maior valor da matriz
 
 float maiorValor (float M[4][4]){
-    float maior = M[0][0];
+    float maior = M[0][0];// inicializado com o primeiro valor
     for(int i = 0; i < 4; i++){
         for(int j = 0; j < 4; j++){
             if(M[i][j] > maior){
