@@ -35,10 +35,10 @@ void Data::setData(int dia,int mes,int ano){
 class Pessoa{
     private:
     string nome;
-    Data nascimento;
+    Data nascimento; // OBJETO DA CLASSE DATA ! !
     public:
-    void setNome(string nome);
-    string getNome();
+    void setNome(string nome);// define o nome da pessoa
+    string getNome();//retorna o nome
     bool setNascimento(int dia,int mes,int ano);
     Data getNascimento();
     void lePessoa();
@@ -47,8 +47,9 @@ class Pessoa{
 void Pessoa::setNome(string nome){
     this->nome = nome;
 }
-bool Pessoa::setNascimento(int dia,int mes,int ano){
-    return this->nascimento;
+bool Pessoa::setNascimento(int dia, int mes, int ano) {
+    this->nascimento.setData(dia, mes, ano); // Usa o método setData do objeto nascimento
+    return this->nascimento.dataValida();     // Retorna se a data configurada é válida
 }
 void Pessoa::lePessoa(){
     string nome;
