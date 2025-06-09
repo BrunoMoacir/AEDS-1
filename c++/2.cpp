@@ -1,15 +1,23 @@
-CONTRUTOR = funcao especial que roda automaticamente na construcao de objetos
+class Pessoa
+{
+private:
+    string nome;
 
-class Pessoa{
-    private:
-    int idade;
-    public:
-    Pessoa(int i){// <- CONSTRUTOR
-        idade = i;
+public:
+    string getNome(){
+        return nome;
+    }
+    void setNome(string nome){
+        this-> nome = nome; 
     }
 };
-NA HORA DE CRIAR:
-Pessoa p(20);// o construtor é chamado automaticamente
+int main()
+{
+    Pessoa p1;
+    Pessoa p2;
+    p1.setNome = {"Lucas"};
+    p2.setNome = {"Pedro"};
 
-DESTRUTOR = método executado sempre que uma instancia for destruida
-
+    cout << p1.getNome << endl;
+    cout << p2.getNome<< endl;
+}
