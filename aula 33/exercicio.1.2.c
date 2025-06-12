@@ -1,30 +1,21 @@
 typedef struct{
-    char nome[50];
+    char nome[MAX];
     int idade;
 }Pessoa;
-bool comparaPessoas(Pessoa pessoas1, Pessoa pessoas2){
+
+float verificaPessoa(char str1[], char str2){
     bool iguais = true;
-    if (pessoas1.idade != pessoas2.idade){
-        iguais = false;
-    }
-    for(int i = 0; pessoas1.nome[i] != '\0' || pessoas2.nome[i]!='\0'; i++){
-        if(pessoas1.nome[i] != pessoas2.nome[i]){
-            iguais = false;
+    int i = 0;
+    while (str1[i]!= '\0' || str[2]!='\0'){
+        if(str1[i] != str2[i]){
+iguais = false;
         }
+        i++;
     }
     return iguais;
 }
-typedef struct{
-    char nome[50];
-    int idade;
-}Pessoa;
-bool comparaPessoas(Pessoa pessoas1, Pessoa pessoas2){
-    bool igual = true;
-    if (pessoas1.idade != pessoas2.idade){
-        igual= false;
-    }
-    if (strcmp(pessoas1.nome, pessoas2.nome) != 0){
-        igual= false;
-    }
-    return igual;
+
+bool verificaPessoa(Pessoa p1, Pessoa p2){
+    bool iguais = true;
+    
 }
