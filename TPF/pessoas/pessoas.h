@@ -27,7 +27,7 @@ class Pessoa{
 };
 void abertura(Pessoa pessoas[]);
 void carregaPessoas(Pessoa pessoas[]);
-void despedida(Pessoa pessoas[]);
+void despedida(Pessoa pessoas[]); 
 
 int tamanho(char* arq);
 void gravaPessoas(Pessoa pessoas[]);

@@ -121,5 +121,5 @@ bool Data::setData(int d, int m, int a)
 
 Data Data::getData()
 {
-    return *this; // retorna o próprio objeto (cópia)
+    return *this; // retorna uma copia
 }
