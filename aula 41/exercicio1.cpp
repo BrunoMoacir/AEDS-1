@@ -3,14 +3,13 @@
 
 using namespace std;
 
-class FigGeo{
-    protected:
-        static int quantidade;
-        string cor;
-    public:
-        FigGeo(){
-            cor = "sem cor";
-        }
-    void 
+class FigGeo
+{
+protected:
+    static int quantidade;
+    string cor;
 
+public:
+    FigGeo();
+    
 }
