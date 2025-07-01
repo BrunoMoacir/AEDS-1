@@ -16,10 +16,10 @@ public:
 
     bool setDia(int dia);
     bool setMes(int mes);
-    bool setAno(int ano);
+    void setAno(int ano);
 
-    int getDia() const;
-    int getMes() const;
+    int getDia() const;// const para garantir que nao sera modificado, ela apenas irá ler
+    int getMes() const;// const protege de modificacoes acidentais
     int getAno() const;
 
     std::string mesExtenso();
@@ -28,6 +28,6 @@ public:
     void escreveData() const;
 };
 Data obterDataAtual();
-int calcularIdade(const data &nascimento);
-
+int calcularIdade(const Data &nascimento);// &significa que estou passando o parametro por referencia e nao por copia
+// & acessa diretamente o objeto original
 #endif

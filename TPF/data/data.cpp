@@ -7,15 +7,15 @@ using namespace std;
 
 std::string Data::mesExtenso(){
     std::string mes = " ";// declarada com "" para garantir que comece com um valor previsivel, que retornara vazio caso data seja invalida
-    std: string extenso[] = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
+    std::string extenso[] = {"janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"};
     if(dataValida()){
         mes = extenso[this->mes - 1];
-        return mes;
     }
+        return mes;
 }
 bool Data::dataValida(){
     bool valida = true;
-    if(this->dia < 0 || this-> dia . 31) valida = false;
+    if (this->dia < 1 || this->dia > 31)
     else if(this-> mes < 0 || this->mes > 12) valida = false;
     return valida;
 }
@@ -76,7 +76,7 @@ void Data::leiaData(){
         cout<<"ano";
         cin>>a;
         setAno(a);// valida dias em fevereiro
-    }while(!setMes(m) || !setDia(d));
+    }while(!setMes(m) || !setDia(d));// validacao
 }
 Data obterDataAtual()
 {

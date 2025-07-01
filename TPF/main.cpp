@@ -6,13 +6,14 @@
 
 int main()
 {
-    Pessoa pessoas[MAX];
-    abertura(pessoas);
+    Pessoa* pessoas[MAX]; // vetor de ponteiro para Pessoa
+    abertura(pessoas);   // pega dados anteriores do arquivo
 
     int opcao;
     do
     {
-        printf("\nMenu de funcionalidades, escolha uma opcao: \n");
+        // menu
+        printf("\n==========Menu de funcionalidades, escolha uma opcao: =========\n");
         printf("0 - Sair do Programa\n");
         printf("1 - Cadastrar pessoa\n");
         printf("2 - Listar todas as pessoas cadastradas\n");
@@ -20,16 +21,17 @@ int main()
         printf("4 - Pesquisar por CPF\n");
         printf("5 - Excluir pessoa\n");
         printf("6 - Apagar todas as pessoas cadastradas\n");
+        fflush(Stdin);// limpa o buffer
         scanf("%i", &opcao);
 
         switch (opcao)
         {
         case 0:
-            printf("\nObrigado por usar este programa\n");
+            printf("\nPrograma encerrado\n");
             despedida(pessoas);
             break;
         case 1:
-            cadastrePessoa(pessoas);
+            void cadastrePessoa(pessoas);// chama a funcao
             break;
         case 2:
             if (TAM == 0)
@@ -38,9 +40,8 @@ int main()
             }
             else
             {
-                for (int i = 0; i < TAM; i++)
-                {
-                    escrevaPessoa(pessoas, i);
+                for(int i = 0; i < TAM; i++){
+                    pessoas[i]->escrevePessoa();
                 }
             }
             break;
@@ -64,6 +65,8 @@ int main()
             printf("\nOpcao invalida!\n");
         }
     } while (opcao != 0);
+
+
 
     return 0;
 }

@@ -1,5 +1,6 @@
-#ifdef PESSOAS_H
+#ifndef PESSOAS_H
 #define PESSOAS_H
+
 
 #include "...data/data.h"
 #include <iostream>
@@ -13,7 +14,11 @@ class Pessoa{
         string nome;
         string CPF;
         Data nascimento;
+        static int contador;
     public:
+        Pessoa();
+        virtual ~Pessoa();
+        static int getContador();
         void setNome(string);
         string getNome();
         void setCPF(string);
@@ -25,19 +30,19 @@ class Pessoa{
         void leiaPessoa();
         void escrevePessoa();
 };
-void abertura(Pessoa pessoas[]);
-void carregaPessoas(Pessoa pessoas[]);
-void despedida(Pessoa pessoas[]); 
+void abertura(Pessoa* pessoas[]);
+void carregaPessoas(Pessoa* pessoas[]);
+void despedida(Pessoa* pessoas[]); 
 
 int tamanho(char* arq);
-void gravaPessoas(Pessoa pessoas[]);
+void gravaPessoas(Pessoa* pessoas[]);
 
-void pesquisaNome(Pessoa pessoas[]);
-void pesquisaCPF(Pessoa pessoas[]);
+void pesquisaNome(Pessoa* pessoas[]);
+void pesquisaCPF(Pessoa* pessoas[]);
 
-void cadastraPessoa(Pessoa pessoas[]);
+void cadastraPessoa(Pessoa* pessoas[]);
 void leiaCPF(char cpf[]);
-bool deletaPessoa(Pessoa pessoas[]);
-void apagarTodos(Pessoa pessoas[]);
+bool deletaPessoa(Pessoa* pessoas[]);
+void apagarTodos(Pessoa* pessoas[]);
 
 #endif
