@@ -8,6 +8,7 @@ int main()
 {
     Pessoa* pessoas[MAX]; // vetor de ponteiro para Pessoa
     abertura(pessoas);   // pega dados anteriores do arquivo
+    char tipos[MAX];
 
     int opcao;
     do
@@ -21,7 +22,7 @@ int main()
         printf("4 - Pesquisar por CPF\n");
         printf("5 - Excluir pessoa\n");
         printf("6 - Apagar todas as pessoas cadastradas\n");
-        fflush(Stdin);// limpa o buffer
+        fflush(stdin);// limpa o buffer
         scanf("%i", &opcao);
 
         switch (opcao)
@@ -31,8 +32,22 @@ int main()
             despedida(pessoas);
             break;
         case 1:
-            void cadastrePessoa(pessoas);// chama a funcao
+            int tipo;
+            cout << "\nCadastrar:\n1 - Aluno\n2 - Professor\nEscolha: ";
+            cin >> tipo;
+            cin.ignore();
+
+            if (tipo == 1)
+                pessoas[TAM] = new Aluno();
+                tipos[TAM] = 'A';
+            else{
+                pessoas[TAM] = new Professor();
+                tipos[TAM] ='P';
+            }
+            pessoas[TAM]->leiaPessoa();
+            TAM++;
             break;
+        }
         case 2:
             if (TAM == 0)
             {

@@ -9,22 +9,26 @@ using namespace std;
 
 int TAM = 0; // tamanho real do vetor pessoas
 int Pessoa::contador = 0;
+extern char tipos[MAX]; // usa o vetor criado no main
 
-Pessoa::Pessoa(){
+Pessoa::Pessoa()
+{
     contador++;
 }
-Pessoa::~Pessoa(){
-    contador --;
+Pessoa::~Pessoa()
+{
+    contador--;
 }
-int Pessoa::getContador(){
+int Pessoa::getContador()
+{
     return contador;
 }
 
-void abertura(Pessoa* pessoas[])
+void abertura(Pessoa *pessoas[])
 {
     cout << "\nControle de Pessoas\n";
-    TAM = tamanho((char *)"tamanhoArq.dat");// le o valor salvo
-    carregaPessoas(pessoas);// carrega os dados de pessoas
+    TAM = tamanho((char *)"tamanhoArq.dat"); // le o valor salvo
+    carregaPessoas(pessoas);                 // carrega os dados de pessoas
 }
 
 int tamanho(char *arq)
@@ -113,7 +117,7 @@ void Pessoa::escrevePessoa()
     cout << endl;
 }
 
-void cadastrePessoa(Pessoa* pessoas[])
+void cadastrePessoa(Pessoa *pessoas[])
 {
     if (TAM >= MAX)
     {
@@ -126,8 +130,8 @@ void cadastrePessoa(Pessoa* pessoas[])
     cout << "\nNome: ";
     string nome;
     getline(cin, nome);
-    pessoas[TAM] = new Pessoa();// criacao de pessoa
-    pessoas[TAM]->setNome(nome);// acessa pessoa com seta
+    pessoas[TAM] = new Pessoa(); // criacao de pessoa
+    pessoas[TAM]->setNome(nome); // acessa pessoa com seta
 
     Data nascimento;
     cout << "\nData de nascimento: ";
@@ -169,11 +173,11 @@ void leiaCPF(char cpf[])
     }
 }
 
-void pesquisaPessoaNome(Pessoa* pessoas[])
+void pesquisaPessoaNome(Pessoa *pessoas[])
 {
     string Nome;
     cout << "\nDigite o nome que deseja procurar: ";
-    getline(cin,Nome);
+    getline(cin, Nome);
 
     int nomesEncontrados = 0;
     for (int i = 0; i < TAM; i++)
@@ -187,11 +191,11 @@ void pesquisaPessoaNome(Pessoa* pessoas[])
 
     if (nomesEncontrados == 0)
     {
-        cout << "Nenhuma pessoa encontrada com o nome '" <<Nome << "'.\n";
+        cout << "Nenhuma pessoa encontrada com o nome '" << Nome << "'.\n";
     }
 }
 
-void pesquisaPessoaCPF(Pessoa* pessoas[])
+void pesquisaPessoaCPF(Pessoa *pessoas[])
 {
     string supostoCPF;
     cout << "\nDigite o CPF a ser encontrado (000.000.000-00): ";
@@ -214,7 +218,7 @@ void pesquisaPessoaCPF(Pessoa* pessoas[])
     }
 }
 
-bool deletaPessoa(Pessoa* pessoas[])
+bool deletaPessoa(Pessoa *pessoas[])
 {
     string cpf;
     cout << "\nCPF para excluir (000.000.000-00): ";
@@ -238,42 +242,52 @@ bool deletaPessoa(Pessoa* pessoas[])
     return false;
 }
 
-void apagarTodos(Pessoa* pessoas[])
+void apagarTodos(Pessoa *pessoas[])
 {
     TAM = 0;
     printf("Todos os cadastros foram removidos.\n");
 }
 
-void carregaPessoas(Pessoa* pessoas[])
+void carregaPessoas(Pessoa *pessoas[])
 {
     FILE *arquivo = fopen("pessoas.dat", "rb");
-    if(arquivo){
-    for (int i = 0; i < TAM; i++) {
-     pessoas[i] = new Pessoa();
-    fread(pessoas[i], sizeof(Pessoa), 1, arquivo);
+    if (arquivo)
+    {
+        for (int i = 0; i < TAM; i++)
+        {
+            fread(&tipos[i], sizeof(char), 1, arquivo); // lê tipo
+
+            if (tipos[i] == 'A')
+                pessoas[i] = new Aluno();
+            else
+                pessoas[i] = new Professor();
+
+            fread(pessoas[i], sizeof(Pessoa), 1, arquivo); // lê dados base
+        }
+        fclose(arquivo);
     }
-    fclose(arquivo);
-}
 }
 
-void gravaPessoas(Pessoa* pessoas[])
+void gravaPessoas(Pessoa *pessoas[])
 {
     FILE *arquivo = fopen("pessoas.dat", "wb");
-    if(arquivo){
-    for (int i = 0; i < TAM; i++) {
-    fwrite(pessoas[i], sizeof(Pessoa), 1, arquivo);
-}
-fclose(arquivo)
+    if (arquivo)
+    {
+        for (int i = 0; i < TAM; i++)
+        {
+            fwrite(pessoas[i], sizeof(Pessoa), 1, arquivo); // grava tipo
+            fwrite(pessoas[i], sizeof(Pessoa), 1, arquivo); // grava dados base
+        }
+        fclose(arquivo)
     }
-
 }
 
-void despedida(Pessoa* pessoas[])
+void despedida(Pessoa *pessoas[])
 {
     printf("\nObrigado!\n");
     gravaPessoas(pessoas);
-    for(int i = 0; i < TAM; i++){
-        delete pessoas[i];// liberacao de memoria
+    for (int i = 0; i < TAM; i++)
+    {
+        delete pessoas[i]; // liberacao de memoria
     }
 }
-
