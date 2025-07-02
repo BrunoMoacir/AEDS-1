@@ -15,7 +15,7 @@ int somaOcorrencias(string texto, char letra, int i){
     if(i >= texto.lenght()){
         return 0;
     }
-    if(texto[pos] == letra){
+    if(texto[i] == letra){
         return 1 + somaOcorrencias(texto, letra, i + 1);
     }else{
         return somaOcorrencias(texto, letra,i+1);
