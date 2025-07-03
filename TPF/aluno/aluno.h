@@ -1,21 +1,20 @@
 #ifndef ALUNO_H
 #define ALUNO_H
+#include "pessoas.h"
 
-#include "../pessoas/pessoas.h"
-
-class Aluno : public Pessoa
-{
+class Aluno : public Pessoa {
 private:
-    string matricula;
+    std::string matricula;
 
 public:
     Aluno();
     virtual ~Aluno();
 
-    void setMatricula(string)
-    string getMatricula() const;
+    void setMatricula(std::string m); // faltava o tipo do parâmetro
+    std::string getMatricula() const;
 
-    virtual void leiaPessoa();
-    virtual void escrevePessoa();
+    // Sobrescrita (override) dos métodos da classe base
+    virtual void leiaPessoa() override;
+    virtual void escrevePessoa() const override;
 };
 #endif

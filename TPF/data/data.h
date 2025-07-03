@@ -1,33 +1,35 @@
 #ifndef DATA_H
 #define DATA_H
 
-#include <iostream>
 #include <string>
 
-class Data{
+class Data {
 private:
-    int dia;
-    int mes;
-    int ano;
+    int dia, mes, ano;
+
 public:
-    int diasMes() const;
-    bool setData(int dia,int mes,int ano);
-    Data getData();
+    // Construtor para inicializar os dados
+    Data(); 
+    Data(int d, int m, int a);
 
-    bool setDia(int dia);
-    bool setMes(int mes);
-    void setAno(int ano);
+    bool setData(int d, int m, int a);
+    bool setDia(int d);
+    bool setMes(int m);
+    void setAno(int a);
 
-    int getDia() const;// const para garantir que nao sera modificado, ela apenas irá ler
-    int getMes() const;// const protege de modificacoes acidentais
+    int getDia() const;
+    int getMes() const;
     int getAno() const;
 
-    std::string mesExtenso();
-    bool dataValida();
+    std::string mesExtenso() const;
+    bool dataValida() const;
     void leiaData();
     void escreveData() const;
+    bool mesmoMes(int m) const;
 };
+
+// Funções utilitárias relacionadas a Data
 Data obterDataAtual();
-int calcularIdade(const Data &nascimento);// &significa que estou passando o parametro por referencia e nao por copia
-// & acessa diretamente o objeto original
+int calcularIdade(const Data& nascimento);
+
 #endif

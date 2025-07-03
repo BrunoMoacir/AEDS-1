@@ -1,19 +1,21 @@
 #ifndef PROFESSOR_H
 #define PROFESSOR_H
+#include "pessoas.h"
 
-#include "../pessoas/pessoas.h"
-
-class Professor : public Pessoa{
+class Professor : public Pessoa {
 private:
-    string area;
+    std::string area;
+
 public:
     Professor();
     virtual ~Professor();
 
-    void setArea(string);
-    string getArea() const;// const para nao alterar nada
+    void setArea(std::string a);
+    std::string getArea() const;
 
-    virtual void leiaPessoa();
-    virtual void escrevePessoa();
+    // Sobrescrita (override) dos métodos da classe base
+    virtual void leiaPessoa() override;
+    virtual void escrevePessoa() const override;
 };
+
 #endif

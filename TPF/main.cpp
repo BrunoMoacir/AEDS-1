@@ -1,87 +1,69 @@
-#include <stdio.h>
-#include <stdbool.h>
 #include <iostream>
-#include "data/data.h"
-#include "pessoas/pessoas.h"
+#include "data.h"
+#include "pessoas.h"
+#include "aluno.h"
+#include "professor.h"
+
+// A variável TAM agora é declarada em pessoas.cpp e informada aqui como externa.
+// Isso é uma prática melhor do que ter múltiplas definições.
+extern int TAM;
 
 int main()
 {
-    Pessoa* pessoas[MAX]; // vetor de ponteiro para Pessoa
-    abertura(pessoas);   // pega dados anteriores do arquivo
-    char tipos[MAX];
+    // Para simplificar, o array 'tipos' também foi movido para dentro de pessoas.cpp
+    // e é acessado pelas funções que precisam dele.
+    Pessoa *pessoas[MAX];
+    
+    // Carrega os dados salvos anteriormente ao iniciar o programa
+    abertura(pessoas); 
 
     int opcao;
     do
     {
-        // menu
-        printf("\n==========Menu de funcionalidades, escolha uma opcao: =========\n");
-        printf("0 - Sair do Programa\n");
-        printf("1 - Cadastrar pessoa\n");
-        printf("2 - Listar todas as pessoas cadastradas\n");
-        printf("3 - Pesquisar por nome\n");
-        printf("4 - Pesquisar por CPF\n");
-        printf("5 - Excluir pessoa\n");
-        printf("6 - Apagar todas as pessoas cadastradas\n");
-        fflush(stdin);// limpa o buffer
-        scanf("%i", &opcao);
+        std::cout << "\n========== MENU PRINCIPAL ==========\n";
+        std::cout << "0 - Sair do programa\n";
+        std::cout << "1 - Cadastrar pessoa\n";
+        std::cout << "2 - Listar pessoas\n";
+        std::cout << "3 - Pesquisar por nome\n";
+        std::cout << "4 - Pesquisar por CPF\n";
+        std::cout << "5 - Excluir pessoa\n";
+        std::cout << "6 - Apagar todos os registros\n";
+        std::cout << "7 - Aniversariantes do mes\n";
+        std::cout << "Escolha uma opcao: ";
+        std::cin >> opcao;
+        std::cin.ignore(); // Limpa o buffer do teclado
 
         switch (opcao)
         {
         case 0:
-            printf("\nPrograma encerrado\n");
-            despedida(pessoas);
+            despedida(pessoas); // Salva tudo antes de sair
             break;
         case 1:
-            int tipo;
-            cout << "\nCadastrar:\n1 - Aluno\n2 - Professor\nEscolha: ";
-            cin >> tipo;
-            cin.ignore();
-
-            if (tipo == 1)
-                pessoas[TAM] = new Aluno();
-                tipos[TAM] = 'A';
-            else{
-                pessoas[TAM] = new Professor();
-                tipos[TAM] ='P';
-            }
-            pessoas[TAM]->leiaPessoa();
-            TAM++;
+            submenuCadastro(pessoas);
             break;
-        }
         case 2:
-            if (TAM == 0)
-            {
-                printf("\nNenhuma pessoa cadastrada!\n");
-            }
-            else
-            {
-                for(int i = 0; i < TAM; i++){
-                    pessoas[i]->escrevePessoa();
-                }
-            }
+            submenuListagem(pessoas);
             break;
-
         case 3:
-            pesquisaPessoaNome(pessoas);
+            submenuPesquisaNome(pessoas);
             break;
-
         case 4:
-        {
-            pesquisaPessoaCPF(pessoas);
+            submenuPesquisaCPF(pessoas);
             break;
-        }
         case 5:
-            deletaPessoa(pessoas);
+            submenuExcluir(pessoas);
             break;
         case 6:
-            apagarTodos(pessoas);
+            submenuApagarTodos(pessoas);
+            break;
+        case 7:
+            aniversariantesMes(pessoas);
             break;
         default:
-            printf("\nOpcao invalida!\n");
+            std::cout << "Opcao invalida! Tente novamente.\n";
         }
     } while (opcao != 0);
 
-
-
+    std::cout << "\nPrograma finalizado.\n";
     return 0;
 }
